@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../utils/colors.dart';
 
 class MovieDetails extends StatefulWidget {
-  const MovieDetails({super.key});
-
+  const MovieDetails({super.key, required this.details});
+  final Map details;
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
 }
@@ -13,7 +13,7 @@ class MovieDetails extends StatefulWidget {
 class _MovieDetailsState extends State<MovieDetails> {
   @override
   void initState() {
-    print(Get.arguments["details"]);
+    print(widget.details);
     super.initState();
   }
 
@@ -25,14 +25,13 @@ class _MovieDetailsState extends State<MovieDetails> {
         leading: IconButton(
             onPressed: () {
               Get.back();
-              Get.back();
             },
             icon: Icon(
               Icons.chevron_left,
               color: primaryColor,
             )),
         title: Text(
-          "Movie Details",
+          "Movie",
           style: TextStyle(color: primaryColor),
         ),
       ),

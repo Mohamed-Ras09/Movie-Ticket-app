@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:ticketapp/pages/moviedetails.dart';
 import 'package:ticketapp/utils/colors.dart';
 import 'package:ticketapp/utils/widgets.dart';
@@ -146,9 +145,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (ctxt, index) {
                     return InkWell(
                       onTap: () {
-                        Get.toNamed("/details",
-                            arguments: {"details": items[index]});
-
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MovieDetails(
+                                    details: items[index],
+                                  )),
+                        );
                         //    Get.toNamed("/details", arguments: {"detail": items[index]});
                       },
                       child: Card(
