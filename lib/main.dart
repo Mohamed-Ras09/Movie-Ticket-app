@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ticketapp/pages/homescreen.dart';
 import 'package:ticketapp/pages/launchscreen.dart';
 import 'package:get/get.dart';
-import 'package:ticketapp/pages/moviedetail.dart';
+import 'package:ticketapp/pages/moviedetails.dart';
 import 'package:ticketapp/pages/signup.dart';
 import 'pages/loginscreen.dart';
 
@@ -19,13 +19,13 @@ class MyApp extends StatelessWidget {
       title: 'Book My Ticket',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, fontFamily: "Roboto"),
-      home: SplashScreen(),
+      initialRoute: "/",
       getPages: [
         GetPage(name: "/", page: () => const SplashScreen()),
         GetPage(name: "/login", page: () => const LoginScreen()),
         GetPage(name: "/signUp", page: () => const SignUp()),
         GetPage(name: "/home", page: () => const HomeScreen()),
-        GetPage(name: "/detail", page: () => const MovieDetails()),
+        GetPage(name: "/details", page: () => const MovieDetails()),
       ],
     );
   }

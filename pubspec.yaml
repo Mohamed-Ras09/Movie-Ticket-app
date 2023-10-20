@@ -50,6 +50,7 @@ flutter:
   assets:
     - images/
     - icons/
+    - assets/sample.json
 
   # example:
   fonts:
