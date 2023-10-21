@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ticketapp/utils/colors.dart';
 import 'package:ticketapp/utils/widgets.dart';
 
@@ -37,10 +36,14 @@ class _LoginScreenState extends State<LoginScreen> {
             myTextField(password, Icons.lock_outline, "Enter Password", true),
             const SizedBox(height: 50),
             hButtons("Log In", () {
-              Get.offAllNamed('/home');
+              // Get.offAllNamed("/home");
+              Navigator.pushReplacementNamed(
+                context,
+                "/home",
+              );
             }),
             const SizedBox(height: 20),
-            signUp()
+            signUp(context)
           ],
         ),
       ),
@@ -48,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-Row signUp() {
+Row signUp(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
@@ -58,7 +61,11 @@ Row signUp() {
       ),
       GestureDetector(
         onTap: () {
-          Get.toNamed("/signUp");
+          //   Get.toNamed("/signUp");
+          Navigator.pushNamed(
+            context,
+            "/signUp",
+          );
         },
         child: Text(
           " Sign Up",

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ticketapp/utils/colors.dart';
 import '../utils/widgets.dart';
 
@@ -38,6 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void goToPage() {
-    Get.offAllNamed('/login');
+    // Get.offAllNamed('/login');
+    Navigator.pushReplacementNamed(context, '/login');
   }
 }

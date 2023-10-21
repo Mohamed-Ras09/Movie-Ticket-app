@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ticketapp/utils/colors.dart';
 import 'package:ticketapp/utils/widgets.dart';
 
@@ -17,7 +16,8 @@ class SignUp extends StatelessWidget {
         backgroundColor: lRed,
         leading: IconButton(
             onPressed: () {
-              Get.back();
+              //  Get.back();
+              Navigator.pop(context);
             },
             icon: Icon(
               Icons.chevron_left,
@@ -42,7 +42,8 @@ class SignUp extends StatelessWidget {
               const SizedBox(height: 40),
               Center(
                   child: hButtons("Sign Up", () {
-                Get.back();
+                //  Get.back();
+                Navigator.pop(context);
               })),
             ],
           ),
