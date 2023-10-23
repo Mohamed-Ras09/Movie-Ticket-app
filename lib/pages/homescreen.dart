@@ -36,14 +36,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       drawer: const Drawer(),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 "Latest Movies",
+                // ignore: prefer_const_constructors
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,

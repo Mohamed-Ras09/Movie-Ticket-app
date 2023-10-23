@@ -1,4 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ticketapp/firebase_auth/firebase_auth-ervice.dart';
 import 'package:ticketapp/utils/colors.dart';
 import 'package:ticketapp/utils/widgets.dart';
 
@@ -10,8 +14,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  TextEditingController emailControl = TextEditingController();
+  TextEditingController passwordControl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +36,14 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: MediaQuery.of(context).size.height * 0.08),
             launchText(),
             SizedBox(height: MediaQuery.of(context).size.height * 0.20),
-            myTextField(email, Icons.person_outline, "Enter UserName", false),
+            myTextField(
+                emailControl, Icons.person_outline, "Enter UserName", false),
             const SizedBox(height: 20),
-            myTextField(password, Icons.lock_outline, "Enter Password", true),
+            myTextField(
+                passwordControl, Icons.lock_outline, "Enter Password", true),
             const SizedBox(height: 50),
             hButtons("Log In", () {
-              // Get.offAllNamed("/home");
-              Navigator.pushReplacementNamed(
-                context,
-                "/home",
-              );
+              _signIn();
             }),
             const SizedBox(height: 20),
             signUp(context)
@@ -48,6 +51,27 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void _signIn() async {
+    String email = emailControl.text;
+    String password = passwordControl.text;
+    if (emailControl.text.isNotEmpty && passwordControl.text.isNotEmpty) {
+      User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+      if (user != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("User is successfully created")));
+        Navigator.pushNamed(context, "/home");
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Some error happend")));
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Please fill all details"),
+      ));
+    }
   }
 }
 
@@ -64,7 +88,7 @@ Row signUp(BuildContext context) {
           //   Get.toNamed("/signUp");
           Navigator.pushNamed(
             context,
-            "/signUp",
+            "/signup",
           );
         },
         child: Text(

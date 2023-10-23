@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ticketapp/pages/homescreen.dart';
+import 'package:ticketapp/pages/loginscreen.dart';
 import 'package:ticketapp/utils/colors.dart';
 import '../utils/widgets.dart';
 
@@ -38,6 +41,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void goToPage() {
     // Get.offAllNamed('/login');
-    Navigator.pushReplacementNamed(context, '/login');
+    FirebaseAuth.instance.authStateChanges();
+    final checkUser = FirebaseAuth.instance.currentUser;
+    print("My user detail is:${checkUser}");
+    if (checkUser != null) {
+      Navigator.pushReplacementNamed(context, '/home');
+    } else {
+      Navigator.pushReplacementNamed(context, '/login');
+    }
   }
 }
