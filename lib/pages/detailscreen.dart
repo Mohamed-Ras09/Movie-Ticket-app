@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ticketapp/pages/bookshow.dart';
 import 'package:ticketapp/utils/widgets.dart';
 import '../models/controllers/homecontroller.dart';
 import '../utils/colors.dart';
@@ -15,6 +16,8 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   HomeController dController = Get.put((HomeController()));
+  String movieName = "Game OF Thrones";
+  String poster = "";
 
   @override
   void dispose() {
@@ -140,7 +143,24 @@ class _DetailScreenState extends State<DetailScreen> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(25),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              // setState(() {
+              //   movieName = dController.selectedMovie[0]["Title"];
+              //   poster = dController.selectedMovie[0]["poster"];
+              // });
+              // print("THe movie name is:movieName");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BookMyShow(
+                      movieName: movieName,
+                      poster: poster,
+                    ),
+                  ));
+              //  Get.to(() =>
+              //       transition: Transition.rightToLeft,
+              //       duration: const Duration(milliseconds: 300));
+            },
             child: BottomAppBar(
               color: lRed,
               height: 50,

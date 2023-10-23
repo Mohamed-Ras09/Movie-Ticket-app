@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ticketapp/firebase_options.dart';
+import 'package:ticketapp/pages/bookshow.dart';
 import 'package:ticketapp/pages/detailscreen.dart';
 import 'package:ticketapp/pages/homescreen.dart';
 import 'package:ticketapp/pages/launchscreen.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomeScreen(),
         '/signup': (context) => const SignUp(),
         '/detailscreen': (context) => const DetailScreen(),
+        
       },
     );
   }

@@ -1,4 +1,6 @@
 // import 'dart:convert';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ticketapp/models/controllers/homecontroller.dart';
@@ -38,32 +40,30 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const Drawer(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                "Latest Movies",
-                // ignore: prefer_const_constructors
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xff3D3D3D)),
-              ),
-              SizedBox(height: 10),
-              HomeCarousel(),
-              SizedBox(height: 20),
-              Text(
-                "All Movies",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xff3D3D3D)),
-              ),
-              SizedBox(height: 10),
-              AllMovies()
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              "Latest Movies",
+              // ignore: prefer_const_constructors
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff3D3D3D)),
+            ),
+            SizedBox(height: 10),
+            HomeCarousel(),
+            SizedBox(height: 20),
+            Text(
+              "All Movies",
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff3D3D3D)),
+            ),
+            SizedBox(height: 10),
+            Expanded(child: AllMovies())
+          ],
         ),
       ),
     );
@@ -89,12 +89,14 @@ class AllMovies extends StatelessWidget {
     return ListView.builder(
         shrinkWrap: true,
         itemCount: movies.length,
+        physics: ClampingScrollPhysics(),
         reverse: true,
         itemBuilder: (ctxt, index) {
           return InkWell(
             onTap: () {
               hController.selectedMovie.add(movies[index]);
               //Get.toNamed("/moviesdetails");
+
               Navigator.pushNamed(context, "/detailscreen");
             },
             child: Card(
